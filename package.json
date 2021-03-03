@@ -1,7 +1,7 @@
 {
-  "name": "@audibene/ta-options",
+  "name": "@audibene/ta-sync",
   "version": "0.1.6",
-  "description": "agnostic unopinionated featureflag library that can also access an api like launchdarkly",
+  "description": "This is an agnostic javascript library that synchronizes shared data/state throughout your app. It is tiny, unopinionated and can interface with and/or replace Redux. It can easily be extended to coordinate with an API or something like firebase or pubnub. It is optimized for high performance and low foot print and has zero dependencies.",
   "main": "./lib/index.js",
   "files": [
     "/lib"
@@ -12,18 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Audibene-GMBH/ta-options.git"
+    "url": "git+https://github.com/Audibene-GMBH/ta-sync.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Audibene-GMBH/ta-options/issues"
+    "url": "https://github.com/Audibene-GMBH/ta-sync/issues"
   },
-  "homepage": "https://github.com/Audibene-GMBH/ta-options#readme",
+  "homepage": "https://github.com/Audibene-GMBH/ta-sync#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "launchdarkly-js-client-sdk": "^2.19.0",
-    "regenerator-runtime": "^0.13.7"
+    "@testing-library/react-hooks": "^5.1.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-test-renderer": "^17.0.1"
   },
   "peerDependencies": {},
   "devDependencies": {

@@ -1,55 +1,48 @@
-# ta-options
-an agnostic feature flag implementation that enables you to overload in code, querystring and api, like launchdarkly
+# Sync.js
 
-## Install
-```
-$ npm install ta-options
-```
+This is an agnostic javascript library that synchronizes shared data/state throughout your app.  It is tiny, unopinionated and can interface with and/or replace Redux.  It can easily be extended to coordinate with an API or something like firebase or pubnub.  It is optimized for high performance and low foot print and has zero dependencies.
 
-## Options vs FeatureFlags
+You can use sync with or without React, Redux, or any other framework.
 
-  I'm calling this "Options", since featureflags is taken
-  the goal is to develop an agnostic approach that is not dependent on react, redux, etc.
+raw usage without React or Redux:
 
-  It should allow the developer to specify options (flags) in multiple ways...
-   - first they can be initialized in config.options
-   - but those can be overloaded by process.env
-   - and then overloaded by sessionStorage (prior changes)
-   - and then overloaded by a querystring (in case we want to overload it now, dynamically)
-   - and all can be changed dynamically in the code and gui (logic trumps all)
-   - and you can extend this object to include remote options, like launchdarkly feature flags, etc.
+```javascript
+    import sync from 'ez-sync-js/Sync
+
+    // update a value
+    sync.dispatch('myVar', 'some value')
+
+    // repeat the last update
+    sync.echo('myVar')
     
-  e.g. ```http://your-domain.com?options=flag1,-flag2,+flag3&flag4=four``` would turn flag1 On (true), and flag2 and flag3 Off (false)
+    ...
 
-```javascript
-  options will look something like {
-      flag1: true,
-      flag2: false,
-      flag3: true,
-      flag4: 'four',
-  }
+    // gets the latest update
+    const myVar = sync.get('myVar').detail 
+
+    ...
+
+    // subscribe to future updates
+    sync.addListener('myVar', callback)
+    
+    // unsubscribe
+    sync.removeListener('myVar', callback)
 ```
 
+## useSync - React
 
-## usage
+Is used just like useState except now you can have different React components anywhere in the app or dom that share the same values (sync) without depending on Redux or Context, nor do the components have to be running concurrently to stay syncrhonized.
+
+See the [demo](https://chadsteele.github.io/sync/)
+
+React usage:
 
 ```javascript
-import theOptions from 'ta-options'
+    import {useSync} from 'ez-sync-js'
 
-describe('Options', () => {
-  test('Options.options', () => {
-    expect(Object.keys(theOptions.list).length).toBeGreaterThan(0)
-  })
-  test('addQueryString', async () => {
-      theOptions.set({})
-      expect(theOptions.list).toEqual({})
-      theOptions.addQueryString('options=flag1,-flag2,+flag3&flag4=four')
-      expect(theOptions.list.flag1).toBeTruthy()
-      expect(theOptions.list.flag2).toBeFalsy()
-      expect(theOptions.list.flag3).toBeTruthy()
-      expect(theOptions.list.flag4).toBe('four')
-  })
-
-  ...
+    const [myVar, setVar] = useSync('myVar','optional initial value')
 ```
+
+![diagram](https://chadsteele.github.io/sync/img/useSync.jpg)
+
 
