@@ -50,7 +50,7 @@ audPipelineBootstrap(pipelineConfig) {
             }
         }
         stage('Test'){
-            container('docker-dind'){
+            container('node'){
             sh "npm test"
             }
         }
