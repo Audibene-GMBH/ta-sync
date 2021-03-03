@@ -1,0 +1,17 @@
+{
+  "testRegex": "/.*.test.js$",
+  "rootDir": ".",
+  "moduleNameMapper": {
+    "^~/(.*)$": "<rootDir>/src/$1",
+    "^@/(.*)$": "<rootDir>/src/$1"
+  },
+  "testEnvironment": "jsdom",
+  "coveragePathIgnorePatterns": [
+    "/node_modules/"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.{js,ts,tsx}",
+    "!**/node_modules/**",
+    "!**/@types/**"
+  ]
+}

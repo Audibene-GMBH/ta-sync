@@ -1,0 +1,42 @@
+{
+  "name": "@audibene/ta-options",
+  "version": "0.1.6",
+  "description": "agnostic unopinionated featureflag library that can also access an api like launchdarkly",
+  "main": "./lib/index.js",
+  "files": [
+    "/lib"
+  ],
+  "scripts": {
+    "test": "jest --collect-coverage --forceExit",
+    "build": "babel src -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Audibene-GMBH/ta-options.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Audibene-GMBH/ta-options/issues"
+  },
+  "homepage": "https://github.com/Audibene-GMBH/ta-options#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "launchdarkly-js-client-sdk": "^2.19.0",
+    "regenerator-runtime": "^0.13.7"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "jest": "^26.6.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
