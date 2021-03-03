@@ -29,13 +29,13 @@ def pipelineConfig = [
             command: 'cat'
         ),
         containerTemplate(
-            name: 'terraform-pipeline',
-            image: '199636132489.dkr.ecr.eu-central-1.amazonaws.com/terraform-pipeline:latest-production',
+            name: 'docker-dind',
+            image: '199636132489.dkr.ecr.eu-central-1.amazonaws.com/aud-docker-dind:19.03.11-dind',
             ttyEnabled: true,
             privileged: true,
             alwaysPullImage: true,
-            command: 'cat'
-      )
+            command: 'dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay'
+        )
     ],
     branchToEnvironmentMapping: [
         'develop'  : 'testing',
