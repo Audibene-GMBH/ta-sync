@@ -27,7 +27,15 @@ def pipelineConfig = [
             privileged: true,
             alwaysPullImage: true,
             command: 'cat'
-        )
+        ),
+        containerTemplate(
+            name: 'terraform-pipeline',
+            image: '199636132489.dkr.ecr.eu-central-1.amazonaws.com/terraform-pipeline:latest-production',
+            ttyEnabled: true,
+            privileged: true,
+            alwaysPullImage: true,
+            command: 'cat'
+      )
     ],
     branchToEnvironmentMapping: [
         'develop'  : 'testing',
